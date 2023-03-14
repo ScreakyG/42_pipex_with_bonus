@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:54:31 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/13 00:08:39 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/03/14 04:03:24 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv, char **envp)
 	if (!data.cmd_paths)
 	{
 		free_only_pipe(&data);
-		msg_error("Error malloc cmd_paths : "); // A REFAIREW
+		msg_error("Error malloc cmd_paths : "); // A REFAIRE
 	}
 	make_pipes(&data);
 	data.index = 0;
@@ -54,8 +54,8 @@ int	main(int argc, char **argv, char **envp)
 		child_process(data, argv, envp);
 		data.index++;
 	}
-	waitpid(-1, NULL, 0);
 	close_pipes(&data);
+	waitpid(-1, NULL, 0);
 	free_parent_data(&data);
 	return (0);
 }

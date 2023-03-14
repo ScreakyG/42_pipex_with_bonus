@@ -1,6 +1,6 @@
 NAME = pipex
 OUTFILE = outfile
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 CC = gcc
 
 HEADERS_DIR = includes/
