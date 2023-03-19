@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 21:53:18 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/14 03:59:51 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/03/16 06:30:49 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	child_process(t_data data, char **argv, char **envp)
 			dup2(data.pipe_fd[data.index * 2 + 1], 1);
 		}
 		close_pipes(&data);
-		data.cmd_args = ft_split(argv[2 + data.index], ' ');
-		data.cmd = get_cmd(data.cmd_paths, data.cmd_args);
+		data.cmd_args = ft_split(argv[2 + data.index + data.is_heredoc], ' ');
+		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 		{
 			free_child_data(&data); // A FAIRE
