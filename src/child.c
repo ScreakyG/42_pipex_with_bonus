@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 21:53:18 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/16 06:30:49 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/03/19 04:48:54 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	child_process(t_data data, char **argv, char **envp)
 		data.cmd = get_cmd(data.cmd_paths, data.cmd_args[0]);
 		if (!data.cmd)
 		{
-			free_child_data(&data); // A FAIRE
-			msg_error("Error with cmd input : ");
+			cmd_err_msg("Command not found : ", data.cmd_args[0]);
+			free_child_data(&data);
 		}
 		execve(data.cmd, data.cmd_args, envp);
 	}

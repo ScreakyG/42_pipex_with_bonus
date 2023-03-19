@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:55:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/16 07:46:11 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/03/19 04:46:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ void	free_child_data(t_data *data);
 // ERROR_MSG
 
 void	msg_error(char *str);
+void	cmd_err_msg(char *str, char *cmd);
+int		msg(char *str);
 
 #endif
