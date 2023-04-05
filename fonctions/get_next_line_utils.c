@@ -5,100 +5,95 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/06 18:58:39 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/16 07:42:35 by fgonzale         ###   ########.fr       */
+/*   Created: 2023/03/20 02:47:14 by fgonzale          #+#    #+#             */
+/*   Updated: 2023/04/05 17:38:34 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-int	ft_check_line(char *saved)
+void	ft_free(char **str1, char **str2, char **str3)
 {
-	if (!saved)
-		return (0);
-	while (*saved)
+	if (str1 && *str1)
 	{
-		if (*saved == '\n')
+		free(*str1);
+		*str1 = NULL;
+	}
+	if (str2 && *str2)
+	{
+		free(*str2);
+		*str2 = NULL;
+	}
+	if (str3 && *str3)
+	{
+		free(*str3);
+		*str3 = NULL;
+	}
+}
+
+int	ft_strchr(char *str, char c)
+{
+	unsigned int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
 			return (1);
-		saved++;
+		i++;
 	}
 	return (0);
 }
 
-char	*ft_strjoin2(char *saved, char *buffer)
+char	*ft_strdup(char *src)
 {
-	char			*join;
-	unsigned int	i;
-	unsigned int	j;
+	char	*copy;
+	int		size;
+	int		i;
 
 	i = 0;
-	j = 0;
-	join = malloc((ft_strlen(saved) + ft_strlen(buffer) + 1) * sizeof(char));
-	if (!join)
+	if (!src)
+		return (ft_strdup(""));
+	size = ft_strlen(src);
+	copy = malloc((size + 1) * sizeof(char));
+	if (!copy)
 		return (NULL);
-	if (saved != NULL)
+	while (src[i])
 	{
-		while (saved[i])
-		{
-			join[i] = saved[i];
-			i++;
-		}
+		copy[i] = src[i];
+		i++;
 	}
-	while (buffer[j])
-		join [i++] = buffer[j++];
-	join[i] = '\0';
-	free(saved);
-	return (join);
+	copy[i] = '\0';
+	return (copy);
 }
 
-char	*cut_at_line(char *saved)
+char	*ft_join_str(char *s1, char *s2)
 {
-	char			*line;
-	unsigned int	i;
+	int				size;
+	char			*joined;
 	unsigned int	j;
+	unsigned int	i;
 
+	if (!s1 || !s2)
+		return (NULL);
 	i = 0;
 	j = 0;
-	if (saved[0] == '\0')
+	size = ft_strlen(s1) + ft_strlen(s2);
+	joined = malloc((size + 1) * sizeof(char));
+	if (!joined)
 		return (NULL);
-	while (saved[i] && saved[i] != '\n')
-		i++;
-	if (saved[i] == '\n')
-		i++;
-	line = malloc ((i + 1) * sizeof(char));
-	if (!line)
-		return (NULL);
-	while (j < i)
+	while (s1[i])
 	{
-		line[j] = saved[j];
+		joined[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		joined[i + j] = s2[j];
 		j++;
 	}
-	line[j] = '\0';
-	return (line);
-}
-
-char	*clean_at_line(char *saved)
-{
-	unsigned int	i;
-	unsigned int	j;
-	char			*cleaned;
-
-	i = 0;
-	j = 0;
-	while (saved[i] && saved[i] != '\n')
-		i++;
-	if (saved[i] == '\0')
-	{
-		free(saved);
-		return (NULL);
-	}
-	i++;
-	cleaned = malloc((ft_strlen(saved) - i + 1) * sizeof(char));
-	if (!cleaned)
-		return (NULL);
-	while (saved[i] != '\0')
-		cleaned[j++] = saved[i++];
-	cleaned[j] = '\0';
-	free(saved);
-	return (cleaned);
+	joined[i + j] = '\0';
+	return (joined);
 }

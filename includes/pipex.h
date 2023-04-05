@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:55:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/19 04:46:34 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:39:29 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #  define BUFFER_SIZE 100
 # endif
 
+# include <errno.h>
+# include <string.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -37,7 +39,7 @@ typedef struct s_data
 	char	**cmd_args;
 	char	*cmd;
 	int		nb_cmds;
-} 	t_data;
+}	t_data;
 
 // FONCTIONS
 
@@ -52,17 +54,17 @@ char	*ft_strjoin2(char *saved, char *buffer);
 
 // GET_NEXT_LINE
 
-char	*find_next_line(char *saved, int fd);
 char	*get_next_line(int fd);
-int		ft_check_line(char *saved);
-char	*cut_at_line(char *saved);
-char	*clean_at_line(char *saved);
+char	*ft_join_str(char *s1, char *s2);
+char	*ft_strdup(char *src);
+int		ft_strchr(char *str, char c);
+void	ft_free(char **str1, char **str2, char **str3);
 
 // FILE MANAGER
 
 void	get_infile(t_data *data, char **argv);
 void	get_outfile(t_data *data, char **argv, int argc);
-void	get_here_doc(char **argv);
+void	get_here_doc(char **argv, t_data *data);
 
 // CHILD
 
@@ -71,20 +73,22 @@ void	child_process(t_data data, char **argv, char **envp);
 // UTILS
 
 void	close_pipes(t_data *data);
+void	close_fds(t_data *data);
 char	*get_paths_envp(char **envp);
 char	*get_cmd(char **cmd_paths, char *cmd_args);
 void	make_pipes(t_data *data);
 
 // FREE
 
-void	free_only_pipe(t_data *data);
-void	free_parent_data(t_data *data);
-void	free_child_data(t_data *data);
+void	free_cmd_paths(t_data *data);
+void	free_cmd_args(t_data *data);
+void	free_parent(t_data *data);
 
 // ERROR_MSG
 
 void	msg_error(char *str);
 void	cmd_err_msg(char *str, char *cmd);
-int		msg(char *str);
+int		msg(char *str, char *str2, int error);
+void	exit_error(int error_status, t_data *data);
 
 #endif

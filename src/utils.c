@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 01:41:24 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/15 02:02:16 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:39:45 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_cmd(char **cmd_paths, char *cmd_args)
 	char	*cmd;
 	char	*temp;
 
-	while (*cmd_paths) // PROBLEEME AVEC VALGRIND QUI STOP PAS
+	while (*cmd_paths)
 	{
 		temp = ft_strjoin(*cmd_paths, "/");
 		cmd = ft_strjoin(temp, cmd_args);

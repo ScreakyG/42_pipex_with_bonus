@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:42:33 by francois          #+#    #+#             */
-/*   Updated: 2023/03/12 01:29:10 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:32:26 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static size_t	ft_words_len(const char *s, char c)
 	return (i);
 }
 
-static void	ft_free(char **tabtab, unsigned int nb)
+static void	ft_free_split(char **tabtab, unsigned int nb)
 {
 	unsigned int	index;
 
@@ -77,7 +77,7 @@ char	**ft_split(char const *s, char c)
 		{
 			tabtab[i] = ft_substr(s, 0, words_len);
 			if (!tabtab[i++])
-				return (ft_free(tabtab, i), NULL);
+				return (ft_free_split(tabtab, i), NULL);
 		}
 		s = &s[words_len + 1];
 	}
