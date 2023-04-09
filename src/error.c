@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 01:33:36 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/03/19 07:12:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:30:57 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,11 @@ void	exit_error(int error_status, t_data *data)
 	exit(error_status);
 }
 
-void	close_fds(t_data *data)
-{
-	close(data->infile);
-	close(data->outfile);
-	close_pipes(data);
-}
-
-int	msg(char *str, char *str2, int error)
+int	msg(char *str, char *str2, char *str3, int error)
 {
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd(str2, 2);
+	ft_putstr_fd(str3, 2);
 	write(2, "\n", 1);
 	return (error);
-}
-
-void	cmd_err_msg(char *str, char *cmd)
-{
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd("\n", 2);
-}
-
-void	msg_error(char *str)
-{
-	perror(str);
-	exit(1);
 }

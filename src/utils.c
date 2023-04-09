@@ -6,23 +6,11 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 01:41:24 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/05 17:39:45 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/09 18:01:42 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
-
-void	close_pipes(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < (data->nb_cmds - 1) * 2)
-	{
-		close(data->pipe_fd[i]);
-		i++;
-	}
-}
 
 char	*get_paths_envp(char **envp)
 {

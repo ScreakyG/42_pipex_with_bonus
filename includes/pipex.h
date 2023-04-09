@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:55:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/05 17:39:29 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/09 23:31:46 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 typedef struct s_data
 {
 	int		is_heredoc;
-	int		index;
+	int		i;
 	int		pid;
 	int		infile;
 	int		outfile;
@@ -86,9 +86,7 @@ void	free_parent(t_data *data);
 
 // ERROR_MSG
 
-void	msg_error(char *str);
-void	cmd_err_msg(char *str, char *cmd);
-int		msg(char *str, char *str2, int error);
+int		msg(char *str, char *str2, char *str3, int error);
 void	exit_error(int error_status, t_data *data);
 
 #endif
