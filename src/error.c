@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 01:33:36 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/09 23:30:57 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:31:06 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	exit_error(int error_status, t_data *data)
 			free_cmd_paths(data);
 		if (data->cmd_args)
 			free_cmd_args(data);
+		if (data->pid)
+			free(data->pid);
 	}
 	if (data->is_heredoc)
 		unlink(".here_doc.tmp");

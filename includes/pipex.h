@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:55:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/09 23:31:46 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:32:53 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_data
 {
 	int		is_heredoc;
 	int		i;
-	int		pid;
+	int		*pid;
 	int		infile;
 	int		outfile;
 	int		*pipe_fd;
@@ -69,6 +69,7 @@ void	get_here_doc(char **argv, t_data *data);
 // CHILD
 
 void	child_process(t_data data, char **argv, char **envp);
+int		exit_code(t_data *data);
 
 // UTILS
 

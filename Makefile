@@ -17,9 +17,10 @@ FUNC_FILES = ft_split.c ft_strjoin.c ft_strlcpy.c ft_strlen.c ft_strncmp.c ft_su
 FUNC = $(addprefix $(FUNC_DIR), $(FUNC_FILES))
 OBJS_F = $(FUNC:.c=.o)
 
+
 #COMMANDES
-%.o: %.c $(HEADERS) Makefile
-								@${CC} ${FLAGS} -c $< -o $@
+%.o: %.c
+		@${CC} ${FLAGS} -c $< -o $@
 
 $(NAME): $(OBJS_F) $(OBJS)
 		@$(CC) $(OBJS_F) $(OBJS) -o $(NAME)

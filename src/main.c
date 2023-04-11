@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:54:31 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/09 23:32:24 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/11 19:32:32 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,29 @@ void	make_pipes(t_data *data)
 			exit_error(msg("Error pipeline", ": ", "", 1), data);
 		i++;
 	}
+}
+
+int	exit_code(t_data *data)
+{
+	int		exit_code;
+	int		status;
+	pid_t	compare_pid;
+
+	close_fds(data);
+	exit_code = 1;
+	data->i--;
+	while (data->i >= 0)
+	{
+		compare_pid = waitpid(data->pid[data->i], &status, 0);
+		if (compare_pid == data->pid[data->nb_cmds - 1])
+		{
+			if (WIFEXITED(status))
+				exit_code = WEXITSTATUS(status);
+		}
+		data->i--;
+	}
+	free_parent(data);
+	return (exit_code);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -48,12 +71,13 @@ int	main(int argc, char **argv, char **envp)
 		exit_error(msg("Error with cmd_paths", ": ", "", 1), &data);
 	make_pipes(&data);
 	data.i = 0;
+	data.pid = malloc(data.nb_cmds * sizeof(int));
+	if (!data.pid)
+		exit_error(msg("Error malloc pid", "", "", 1), &data);
 	while (data.i < data.nb_cmds)
 	{
 		child_process(data, argv, envp);
 		data.i++;
 	}
-	free_parent(&data);
-	waitpid(-1, NULL, 0);
-	return (0);
+	return (exit_code(&data));
 }

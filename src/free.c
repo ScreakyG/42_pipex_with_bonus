@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 23:07:43 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/09 18:36:55 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:35:16 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	free_parent(t_data *data)
 {
 	close_fds(data);
 	free_cmd_paths(data);
+	free(data->pid);
 	free(data->pipe_fd);
 	if (data->is_heredoc)
 		unlink(".here_doc.tmp");

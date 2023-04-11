@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 21:53:18 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/09 23:35:49 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/11 18:41:19 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	s_io(int input, int output, t_data *data)
 
 void	child_process(t_data data, char **argv, char **envp)
 {
-	data.pid = fork();
-	if (data.pid == 0)
+	data.pid[data.i] = fork();
+	if (data.pid[data.i] == 0)
 	{
 		data.cmd_args = NULL;
 		if (data.i == 0)
