@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 05:29:50 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/09 23:35:11 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:36:24 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	get_infile(t_data *data, char **argv)
 		data->is_heredoc = 1;
 		data->infile = open(".here_doc.tmp", O_RDONLY);
 		if (data->infile < 0)
-			exit_error(msg("here_doc", ": ", "", 1), data);
+			exit_error(msg(ERR_HEREDOC, "", "", 1), data);
 	}
 	else
 		data->infile = open(argv[1], O_RDONLY, 0644);

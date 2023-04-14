@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 23:55:49 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/11 18:32:53 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/14 11:41:52 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
+# define ERR_ARGS "Invalid number of arguments\n"
+# define ERR_PIPES "Error while creating pipes\n"
+# define ERR_PATHS "Error finding CMD's paths\n"
+# define ERR_PIDS "Error while creating PIDS\n"
+# define ERR_HEREDOC "Error with here_doc\n"
+# define ERR_CMD "Command not found : "
+
 typedef struct s_data
 {
 	int		is_heredoc;
@@ -33,7 +40,7 @@ typedef struct s_data
 	int		*pid;
 	int		infile;
 	int		outfile;
-	int		*pipe_fd;
+	int		*p_fd;
 	char	*paths_envp;
 	char	**cmd_paths;
 	char	**cmd_args;

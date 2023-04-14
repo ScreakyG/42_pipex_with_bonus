@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 01:33:36 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/04/11 18:31:06 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/04/14 11:44:40 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	exit_error(int error_status, t_data *data)
 	if (data)
 	{
 		close_fds(data);
-		if (data->pipe_fd)
-			free(data->pipe_fd);
+		if (data->p_fd)
+			free(data->p_fd);
 		if (data->cmd_paths)
 			free_cmd_paths(data);
 		if (data->cmd_args)
